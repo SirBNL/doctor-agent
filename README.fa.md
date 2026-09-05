@@ -248,6 +248,20 @@ pytest -v
 
 </div>
 
+## 🐍 مارِ مشارکت‌ها
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/SirBNL/doctor-agent/output/github-contribution-grid-snake-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/SirBNL/doctor-agent/output/github-contribution-grid-snake.svg"/>
+  <img alt="مار مشارکت‌ها" src="https://raw.githubusercontent.com/SirBNL/doctor-agent/output/github-contribution-grid-snake.svg"/>
+</picture>
+
+</div>
+
+## 📊 آمار گیت‌هاب
+
 <div align="center">
 
 <img src="https://skillicons.dev/icons?i=python,pytest,html,css,js&theme=dark" alt="stack"/>

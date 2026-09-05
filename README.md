@@ -248,6 +248,20 @@ PRs are welcome! For anything non-trivial, open an issue first. Run `pytest -v` 
 
 [MIT](LICENSE) — free to use, modify and ship. If this repo helped you, a ⭐ would make our day.
 
+## 🐍 Contribution Snake
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/SirBNL/doctor-agent/output/github-contribution-grid-snake-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/SirBNL/doctor-agent/output/github-contribution-grid-snake.svg"/>
+  <img alt="contribution snake" src="https://raw.githubusercontent.com/SirBNL/doctor-agent/output/github-contribution-grid-snake.svg"/>
+</picture>
+
+</div>
+
+## 📊 GitHub Stats
+
 <div align="center">
 
 <img src="https://skillicons.dev/icons?i=python,pytest,html,css,js&theme=dark" alt="stack"/>
