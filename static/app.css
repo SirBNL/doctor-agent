@@ -1,0 +1,389 @@
+/* ═══════════════════════════════════════════════════════════════
+   دستیار نوبت کلینیک — استایل اصلی (RTL، تم پزشکی سبزآبی)
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg: #eef4f2;
+  --bg-grad-a: #e7f2ee;
+  --bg-grad-b: #e9edf9;
+  --surface: #ffffff;
+  --surface-2: #f6faf8;
+  --text: #16241f;
+  --text-2: #5a6d66;
+  --border: #dfe9e4;
+  --primary: #0e8a6d;
+  --primary-2: #0a6d55;
+  --accent: #4f6ef7;
+  --danger: #d94848;
+  --warn-bg: #fff7e6;
+  --warn-border: #f0c36c;
+  --warn-text: #8a5a00;
+  --radius: 16px;
+  --shadow: 0 8px 30px rgba(15, 55, 45, .08);
+  --font: "Vazirmatn", Vazirmatn, "Segoe UI", Tahoma, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1512;
+    --bg-grad-a: #0e1714;
+    --bg-grad-b: #10151f;
+    --surface: #15201c;
+    --surface-2: #182420;
+    --text: #e6efeb;
+    --text-2: #93a8a0;
+    --border: #233430;
+    --primary: #2fbd95;
+    --primary-2: #27a380;
+    --accent: #7d93ff;
+    --danger: #ef6b6b;
+    --warn-bg: #2a2210;
+    --warn-border: #6b5316;
+    --warn-text: #eecf8f;
+    --shadow: 0 10px 34px rgba(0, 0, 0, .35);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 85% -10%, var(--bg-grad-a), transparent 60%),
+    radial-gradient(1000px 500px at 0% 110%, var(--bg-grad-b), transparent 55%),
+    var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden { display: none !important; }
+
+/* ═══════════ هدر ═══════════ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 42px; height: 42px;
+  font-size: 21px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 6px 16px rgba(14, 138, 109, .35);
+}
+
+.brand-text { display: flex; flex-direction: column; line-height: 1.35; }
+.brand-text strong { font-size: 14.5px; }
+.brand-text small { color: var(--text-2); font-size: 11.5px; }
+
+.topbar-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+
+.status-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 11.5px; font-weight: 600;
+  padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.status-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #b6b6b6; }
+.status-pill.ok    { color: var(--primary); border-color: color-mix(in srgb, var(--primary) 40%, transparent); background: color-mix(in srgb, var(--primary) 10%, transparent); }
+.status-pill.ok .dot { background: var(--primary); animation: pulse 2s infinite; }
+.status-pill.fail  { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, transparent); background: color-mix(in srgb, var(--danger) 8%, transparent); }
+.status-pill.fail .dot { background: var(--danger); }
+.status-pill.pending .dot { animation: pulse 1.2s infinite; }
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 45%, transparent); }
+  70% { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.model-box {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; color: var(--text-2);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  border-radius: 10px; padding: 4px 8px;
+}
+.model-box select {
+  font-family: var(--font);
+  font-size: 11px; color: var(--text);
+  border: 0; background: transparent; outline: none;
+  max-width: 210px; direction: ltr;
+}
+
+.icon-btn {
+  display: grid; place-items: center;
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all .18s;
+}
+.icon-btn:hover { color: var(--primary); border-color: var(--primary); transform: translateY(-1px); }
+
+/* ═══════════ بنر راهنما ═══════════ */
+
+.help-banner {
+  max-width: 880px; width: calc(100% - 24px);
+  margin: 10px auto 0;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 12px; line-height: 1.9;
+}
+.help-banner code {
+  direction: ltr; display: inline-block;
+  font-family: ui-monospace, Consolas, monospace; font-size: 11px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid var(--border);
+  padding: 1px 7px; border-radius: 7px;
+}
+
+/* ═══════════ ناحیه چت ═══════════ */
+
+.chat-wrap { flex: 1; overflow-y: auto; scroll-behavior: smooth; }
+
+.chat {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 18px 12px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* خوش‌آمد */
+.welcome {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.welcome-hero { display: flex; gap: 14px; align-items: center; }
+.welcome-avatar {
+  font-size: 30px; width: 62px; height: 62px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 20px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 18%, transparent), color-mix(in srgb, var(--accent) 16%, transparent));
+  border: 1px solid var(--border);
+}
+.welcome h1 { margin: 0 0 4px; font-size: 18px; }
+.welcome p { margin: 0; color: var(--text-2); font-size: 13px; line-height: 1.9; }
+
+.welcome-info { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.info-chip {
+  font-size: 11.5px; color: var(--text-2);
+  border: 1px dashed var(--border);
+  border-radius: 999px; padding: 5px 12px;
+  background: var(--surface-2);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.chip {
+  font-family: var(--font);
+  font-size: 12px; color: var(--primary-2);
+  background: color-mix(in srgb, var(--primary) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all .16s;
+}
+.chip:hover { background: var(--primary); color: #fff; transform: translateY(-1px); box-shadow: 0 6px 14px rgba(14,138,109,.3); }
+
+/* پیام‌ها */
+.msg {
+  max-width: 86%;
+  padding: 11px 15px;
+  font-size: 13.5px;
+  line-height: 2;
+  border-radius: 18px;
+  animation: rise .28s ease-out;
+  word-break: break-word;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.msg.user {
+  align-self: flex-start;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 6px 18px rgba(14, 138, 109, .25);
+}
+.msg.bot {
+  align-self: flex-end;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 6px;
+  box-shadow: var(--shadow);
+}
+.msg.bot.error { border-color: color-mix(in srgb, var(--danger) 45%, transparent); background: color-mix(in srgb, var(--danger) 6%, var(--surface)); }
+.msg .who { display: block; font-size: 10.5px; opacity: .75; margin-bottom: 3px; }
+
+/* چیپ‌های فراخوانی ابزار */
+.trace { align-self: flex-end; display: flex; flex-wrap: wrap; gap: 6px; max-width: 86%; }
+.tool-chip {
+  font-size: 10.5px;
+  font-family: var(--font);
+  color: var(--text-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 11px;
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px;
+  transition: all .16s;
+}
+.tool-chip:hover { border-color: var(--accent); color: var(--accent); }
+.tool-chip .wrench { font-size: 11px; }
+.tool-chip details { display: none; }
+.tool-pop {
+  margin-top: 6px; font-size: 11px; line-height: 1.9;
+  background: var(--surface-2); border: 1px dashed var(--border);
+  border-radius: 10px; padding: 8px 10px; color: var(--text-2);
+  white-space: pre-wrap; direction: ltr; text-align: left; max-height: 180px; overflow: auto;
+}
+
+/* کارت نوبت ثبت‌شده */
+.booking-card {
+  align-self: flex-end;
+  max-width: 86%;
+  border-radius: var(--radius);
+  border: 1.5px solid color-mix(in srgb, var(--primary) 45%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--primary) 10%, var(--surface)), var(--surface));
+  box-shadow: var(--shadow);
+  padding: 15px 17px;
+  animation: rise .3s ease-out;
+}
+.booking-card .bk-head {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 13.5px; color: var(--primary-2);
+  margin-bottom: 9px;
+}
+.booking-card .bk-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 7px 18px; font-size: 12.5px;
+}
+.booking-card .bk-grid b { color: var(--text-2); font-weight: 500; font-size: 11px; display: block; }
+.booking-card .bk-grid span { font-weight: 700; }
+
+/* نشانگر تایپ */
+.typing {
+  align-self: flex-end;
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px; border-bottom-left-radius: 6px;
+  padding: 10px 15px;
+  box-shadow: var(--shadow);
+  font-size: 11.5px; color: var(--text-2);
+}
+.typing .dots { display: inline-flex; gap: 3.5px; }
+.typing .dots i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--primary);
+  animation: bounce 1.2s infinite;
+}
+.typing .dots i:nth-child(2) { animation-delay: .15s; }
+.typing .dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes bounce { 0%, 60%, 100% { transform: none; opacity: .55; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+/* ═══════════ ورودی پیام ═══════════ */
+
+.composer {
+  position: sticky; bottom: 0;
+  padding: 10px 12px 12px;
+  background: linear-gradient(to top, var(--bg) 65%, transparent);
+}
+.composer-inner {
+  max-width: 880px; margin: 0 auto;
+  display: flex; align-items: flex-end; gap: 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 7px 8px 7px 14px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s;
+}
+.composer-inner:focus-within { border-color: var(--primary); }
+
+#input {
+  flex: 1; resize: none;
+  font-family: var(--font); font-size: 13.5px;
+  color: var(--text);
+  background: transparent; border: 0; outline: none;
+  line-height: 1.9; max-height: 130px; padding: 5px 0;
+}
+#input::placeholder { color: var(--text-2); }
+
+.send-btn {
+  flex: none;
+  width: 42px; height: 42px;
+  border: 0; border-radius: 13px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff; cursor: pointer;
+  display: grid; place-items: center;
+  transition: all .18s;
+  box-shadow: 0 6px 16px rgba(14, 138, 109, .3);
+}
+.send-btn:hover:not(:disabled) { transform: translateY(-1px) scale(1.03); }
+.send-btn:disabled { opacity: .55; cursor: not-allowed; }
+
+.composer-hint {
+  max-width: 880px; margin: 7px auto 0;
+  text-align: center;
+  font-size: 10.5px; color: var(--text-2);
+}
+
+/* انیمیشن ورود کارت */
+.card-anim { animation: rise .35s ease-out; }
+
+/* موبایل */
+@media (max-width: 640px) {
+  .brand-text small { display: none; }
+  .model-box span { display: none; }
+  .msg { max-width: 92%; }
+  .booking-card, .trace { max-width: 92%; }
+  .status-pill #status-text { max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
+}
+
+/* اسکرول‌بار */
+.chat-wrap::-webkit-scrollbar { width: 9px; }
+.chat-wrap::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--text-2) 30%, transparent); border-radius: 99px; }
+.chat-wrap::-webkit-scrollbar-track { background: transparent; }

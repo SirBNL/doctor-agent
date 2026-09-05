@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دستیار نوبت دکتر احمدی</title>
+<meta name="description" content="رزرو نوبت پزشک با Agent هوشمند — اجرا کامل روی سیستم شما">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ═══════════ هدر ═══════════ -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-icon">🩺</span>
+        <div class="brand-text">
+          <strong>دستیار نوبت کلینیک</strong>
+          <small>دکتر احمدی · پزشک عمومی</small>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <div id="status-pill" class="status-pill pending" title="وضعیت اتصال به Ollama">
+          <span class="dot"></span><span id="status-text">در حال بررسی…</span>
+        </div>
+        <label class="model-box" title="مدل فعال">
+          <span>مدل:</span>
+          <select id="model-select" disabled><option>—</option></select>
+        </label>
+        <button id="btn-reset" class="icon-btn" title="پاک‌سازی گفتگو و نوبت‌ها">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════ نوار راهنما (اگر Ollama قطع بود) ═══════════ -->
+  <div id="help-banner" class="help-banner hidden"></div>
+
+  <!-- ═══════════ چت ═══════════ -->
+  <main class="chat-wrap">
+    <section id="chat" class="chat" aria-live="polite">
+
+      <div class="welcome card-anim">
+        <div class="welcome-hero">
+          <div class="welcome-avatar">🧑‍⚕️</div>
+          <div>
+            <h1>سلام! چطور می‌توانم کمک کنم؟</h1>
+            <p>من دستیار هوشمند نوبت‌دهی هستم. هر چیزی که لازم دارید بگویید — بررسی وقت‌های آزاد یا رزرو نوبت.</p>
+          </div>
+        </div>
+        <div class="welcome-info">
+          <div class="info-chip"><span>📅</span> روزهای کاری: شنبه تا سه‌شنبه</div>
+          <div class="info-chip"><span>🕐</span> امروز (شبیه‌سازی): شنبه</div>
+          <div class="info-chip"><span>🔒</span> اجرای کامل روی سیستم شما</div>
+        </div>
+        <div class="chips" id="quick-chips">
+          <button class="chip" data-text="چه وقت‌هایی آزاد است؟">چه وقت‌هایی آزاد است؟</button>
+          <button class="chip" data-text="اسمم پوریاست، برای چکاپ نوبت میخوام">رزرو اولین وقت خالی</button>
+          <button class="chip" data-text="دوشنبه ساعت 15 نوبت میخوام">دوشنبه ساعت ۱۵</button>
+          <button class="chip" data-text="برای فردا ساعت 10 صبح وقت دارید؟">فردا ساعت ۱۰ صبح</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ═══════════ ورودی پیام ═══════════ -->
+  <footer class="composer">
+    <div class="composer-inner">
+      <textarea id="input" rows="1" placeholder="پیام خود را بنویسید… (Enter = ارسال)"></textarea>
+      <button id="btn-send" class="send-btn" aria-label="ارسال">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+    <p class="composer-hint" id="foot-hint">Agent با دو ابزار «دیدن وقت آزاد» و «رزرو نوبت» کار می‌کند · <span id="foot-model"></span></p>
+  </footer>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
